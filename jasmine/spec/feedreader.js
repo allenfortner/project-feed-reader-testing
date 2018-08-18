@@ -22,8 +22,8 @@ $(function() {
          * page?
          */
         it('are defined', function() {
-            expect(allFeeds).toBeDefined();
-            expect(allFeeds.length).not.toBe(0);
+            expect(allFeeds).toBeDefined(); //Expect allFeeds to be defined
+            expect(allFeeds.length).not.toBe(0); //Expect allFeeds to not be empty
         });
 
 
@@ -34,8 +34,8 @@ $(function() {
 		 
 		it('URL defined', function() {
 			for(let feed of allFeeds) {
-				expect(feed.url).toBeDefined();
-				expect(feed.url.length).not.toBe(0);
+				expect(feed.url).toBeDefined(); //Expect a URL to be defined
+				expect(feed.url.length).not.toBe(0); //Expect the URL to not be empty
 			}
 		});
 
@@ -46,8 +46,8 @@ $(function() {
          */
 		it('name defined', function() {
 			for(let feed of allFeeds) {
-				expect(feed.name).toBeDefined();
-				expect(feed.name.length).not.toBe(0);
+				expect(feed.name).toBeDefined(); //Expect the feed's name to be defined
+				expect(feed.name.length).not.toBe(0); //Expect the feed to not be empty
 			}
 		});
     });
@@ -61,7 +61,7 @@ $(function() {
          * hiding/showing of the menu element.
          */
 		it('is hidden', function() {
-			expect($('body').attr('class')).toBe('menu-hidden');
+			expect($('body').attr('class')).toBe('menu-hidden'); //Expect the body's initial class to be menu-hidden
 		});
 		
          /* Write a test that ensures the menu changes
@@ -70,9 +70,9 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
 		it('changes visibility when clicked', function() {
-			$('.menu-icon-link').click();
-			expect($('body').attr('class')).not.toBe('menu-hidden');
-			$('.menu-icon-link').click();
+			$('.menu-icon-link').click(); //Click to open the menu
+			expect($('body').attr('class')).not.toBe('menu-hidden'); //Expect menu to be open
+			$('.menu-icon-link').click(); //Close the menu
 		});
 	});
     /* Write a new test suite named "Initial Entries" */
@@ -84,11 +84,11 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
 		beforeEach(function(done) {
-			loadFeed(0, done);
+			loadFeed(0, done); //Load the first feed
 		});
 		
 		it('completes work', function() {
-			expect($('.feed').children.length > 0).toBe(true);
+			expect($('.feed').children.length > 0).toBe(true); //Expect feed to be completed
 		});
 	});
 	
@@ -99,23 +99,23 @@ $(function() {
          * Remember, loadFeed() is asynchronous.
          */
 		const feed = document.querySelector('.feed');
-		const firstFeed = [];
-		const newFeed = [];
+		const firstFeed = []; //Will contain the first feed content
+		const newFeed = []; //Will contain the second feed content
 		
 		beforeEach(function(done) {
-			loadFeed(0);
+			loadFeed(0); //Load the first feed
 			Array.from(feed.children).forEach(function(entry) {
-				firstFeed.push(entry.innerText);
+				firstFeed.push(entry.innerText); //Push the first feed content to firstFeed variable
 			});
-			loadFeed(1, done);
+			loadFeed(1, done); //Load the second feed
 		});
 		
 		it('content changes', function() {
 			Array.from(feed.children).forEach(function(entry) {
-				newFeed.push(entry.innerText);
+				newFeed.push(entry.innerText); //Push the second feed content to the newFeed variable
 			});
 			newFeed.forEach(function(entry,index) {
-				expect(firstFeed [index] === newFeed [index]).toBe(false);
+				expect(firstFeed [index] === newFeed [index]).toBe(false); //Expect the first loaded feed's content to not match the second loaded feed's content
 			});
 		});
 	});
