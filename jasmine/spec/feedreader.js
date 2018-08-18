@@ -70,8 +70,9 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
 		it('changes visibility when clicked', function() {
-			$('.menu-icon-link').click()
+			$('.menu-icon-link').click();
 			expect($('body').attr('class')).not.toBe('menu-hidden');
+			$('.menu-icon-link').click();
 		});
 	});
     /* Write a new test suite named "Initial Entries" */
